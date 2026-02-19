@@ -11,21 +11,6 @@ const sampleDocuments = {
             date: '2024-11-29',
             size: '2.4 MB',
             url: 'documentos/convenios/convenio_alcobendas_2024-2027.pdf'
-        {
-            id: 2,
-            title: 'Calendario Laboral 2026',
-            type: 'pdf',
-            date: '2026-01-01',
-            size: '500 KB',
-            url: 'documentos/convenios/CALENDARIO_LABORAL_2026.pdf'
-        },
-        {
-            id: 3,
-            title: 'Tablas Salariales 2026 (Excel)',
-            type: 'document',
-            date: '2026-01-01',
-            size: '150 KB',
-            url: 'documentos/convenios/Tablas 2026 (Solo RSU y categoria carton).xlsx'
         },
         {
             id: 2,
