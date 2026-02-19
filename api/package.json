@@ -1,0 +1,33 @@
+{
+  "name": "ccoo-server",
+  "version": "1.0.0",
+  "description": "Servidor para CCOO Hábitat - Conecta app con OpenAI GPT",
+  "main": "server.js",
+  "scripts": {
+    "start": "node agent-server.js",
+    "dev": "nodemon agent-server.js",
+    "server-old": "node server.js",
+    "agent": "node agent-server.js",
+    "agent:dev": "nodemon agent-server.js",
+    "upload-docs": "node upload-documents.js"
+  },
+  "keywords": [
+    "ccoo",
+    "openai",
+    "gpt",
+    "servidor"
+  ],
+  "author": "CCOO Hábitat Alcobendas",
+  "license": "ISC",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.2",
+    "openai": "^4.80.0",
+    "pdf-parse": "^1.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - CC.OO. Hábitat Alcobendas</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="contacto.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <button class="back-btn" onclick="window.location.href='index.html'">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M19 12H5"></path>
+                    <path d="m12 19-7-7 7-7"></path>
+                </svg>
+            </button>
+            <div class="header-text">
+                <h1>Contacto</h1>
+                <p class="subtitle">Sección Sindical de Alcobendas</p>
+            </div>
+            <div class="header-icons">
+                <img src="cc.oo.jpg" alt="CC.OO." class="header-logo-small">
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- Contact Cards -->
+        <section class="contact-channels">
+            <div class="channel-card email" onclick="window.location.href='mailto:comiteaccionaalcobendas@gmail.com'">
+                <div class="channel-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m22 2-7 20-4-9-9-4Z"></path>
+                        <path d="M22 2 11 13"></path>
+                    </svg>
+                </div>
+                <div class="channel-info">
+                    <h3>Email Directo</h3>
+                    <p>comiteaccionaalcobendas@gmail.com</p>
+                </div>
+            </div>
+
+            <div class="channel-card whatsapp" onclick="window.location.href='https://wa.me/34605027203'">
+                <div class="channel-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                        </path>
+                    </svg>
+                </div>
+                <div class="channel-info">
+                    <h3>WhatsApp / Teléfono</h3>
+                    <p>+34 605 02 72 03</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Form -->
+        <section class="form-section">
+            <div class="form-card">
+                <h2>Buzón de Consultas</h2>
+                <p class="form-intro">Envíanos tu duda y quedará registrada automáticamente en nuestro sistema de
+                    seguimiento.</p>
+
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="userName">Nombre Completo</label>
+                        <input type="text" id="userName" name="nombre" class="form-input"
+                            placeholder="Tu nombre y apellidos" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="userCategory">Estado de Afiliación</label>
+                        <select id="userCategory" name="categoria" class="form-input">
+                            <option value="afiliado">Afiliado/a</option>
+                            <option value="no-afiliado">No Afiliado/a</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="userSubject">Asunto</label>
+                        <input type="text" id="userSubject" name="asunto" class="form-input"
+                            placeholder="Resumen corto de tu duda" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="userMessage">Mensaje detallado</label>
+                        <textarea id="userMessage" name="mensaje" class="form-input" rows="5"
+                            placeholder="Explícanos tu situación..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary full-width" id="submitBtn">
+                        <span id="btnText">Enviar y Registrar</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M5 12h14"></path>
+                            <path d="m12 5 7 7-7 7"></path>
+                        </svg>
+                    </button>
+                </form>
+
+                <!-- Success Message (hidden) -->
+                <div id="successMessage" class="success-message" style="display: none;">
+                    <div class="success-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                    <h3>¡Enviado con éxito!</h3>
+                    <p>Tus datos han sido registrados. También se ha generado el correo para que lo envíes ahora.</p>
+                    <button class="btn-secondary" onclick="location.reload()">Enviar otra consulta</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Info Box -->
+        <section class="info-box">
+            <div class="info-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                <p>Las consultas se registran de forma segura para un mejor seguimiento por parte de los delegados.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Library for Excel (xlsx) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="contacto.js"></script>
+</body>
+
+</html>

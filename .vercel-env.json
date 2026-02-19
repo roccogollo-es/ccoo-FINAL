@@ -1,0 +1,7 @@
+[
+    {
+        "key": "OPENAI_API_KEY",
+        "value": "sk-proj-...",
+        "type": "encrypted"
+    }
+]
