@@ -19,7 +19,7 @@ const sampleDocuments = {
             date: '2024-11-29',
             size: '2.4 MB',
             url: 'documentos/convenios/convenio_alcobendas_2024-2027.pdf'
-                    {
+        {
             id: 2,
             title: 'Calendario Laboral 2026',
             type: 'pdf',
