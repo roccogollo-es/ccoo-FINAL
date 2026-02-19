@@ -2,14 +2,6 @@
 // DOCUMENTOS - JavaScript
 // ============================================
 
-// ⚠️ INSTRUCCIONES PARA AGREGAR TUS DOCUMENTOS:
-// 1. Copia tus archivos a las carpetas correspondientes:
-//    - PDFs de convenios → /documentos/convenios/
-//    - Actas → /documentos/actas/
-//    - Vídeos → /documentos/videos/
-//    - Presentaciones → /documentos/presentaciones/
-// 2. Agrega la información aquí abajo siguiendo el formato de ejemplo
-
 const sampleDocuments = {
     convenios: [
         {
@@ -21,6 +13,22 @@ const sampleDocuments = {
             url: 'documentos/convenios/convenio_alcobendas_2024-2027.pdf'
         },
         {
+            id: 2,
+            title: 'Calendario Laboral 2026',
+            type: 'pdf',
+            date: '2026-01-01',
+            size: '500 KB',
+            url: 'documentos/convenios/CALENDARIO_LABORAL_2026.pdf'
+        },
+        {
+            id: 3,
+            title: 'Tablas Salariales 2026 (Excel)',
+            type: 'document',
+            date: '2026-01-01',
+            size: '150 KB',
+            url: 'documentos/convenios/Tablas 2026 (Solo RSU y categoria carton).xlsx'
+        },
+        {
             id: 4,
             title: 'Protocolo Ola de Calor Alcobendas 2025',
             type: 'pdf',
@@ -30,7 +38,7 @@ const sampleDocuments = {
         },
         {
             id: 5,
-            title: 'Tablas Salariales 2026',
+            title: 'Tablas Salariales 2025',
             type: 'pdf',
             date: '2026-01-01',
             size: '293 KB',
@@ -236,15 +244,6 @@ const sampleDocuments = {
             duration: '45:30',
             url: 'documentos/videos/formacion_derechos.mp4'  // Puede ser MP4, o un enlace de YouTube
         },
-        // Para vídeos de YouTube, usa el enlace directo:
-        // {
-        //     id: 21,
-        //     title: 'Charla sobre convenios',
-        //     type: 'video',
-        //     date: '2024-02-15',
-        //     duration: '1:15:00',
-        //     url: 'https://www.youtube.com/watch?v=XXXXXXX'
-        // },
     ],
     presentaciones: [
         {
@@ -255,7 +254,6 @@ const sampleDocuments = {
             size: '5.2 MB',
             url: 'documentos/presentaciones/negociacion_colectiva.pptx'
         },
-        // ⬇️ AGREGA MÁS PRESENTACIONES AQUÍ
     ]
 };
 
