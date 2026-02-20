@@ -208,7 +208,7 @@ function HomeView({ setView }) {
                     <div className="rc-icon blue">📝</div>
                     <div><div className="rc-title">Tablas Salariales</div><div className="rc-desc">Tablas actualizadas 2026</div></div>
                 </div>
-                <div className="resource-card" onClick={() => window.open('/documentos/actas/acta_enero_2026.pdf', '_blank')}>
+                <div className="resource-card" onClick={() => setView('actas')}>
                     <div className="rc-icon" style={{ background: '#888', color: 'white' }}>💼</div>
                     <div><div className="rc-title">Actas del Comité</div><div className="rc-desc">Últimas actas de reuniones</div></div>
                 </div>
@@ -216,6 +216,55 @@ function HomeView({ setView }) {
                     <div className="rc-icon" style={{ background: 'var(--black)', color: 'white' }}>▶️</div>
                     <div><div className="rc-title">Vídeos y Formación</div><div className="rc-desc">Material audiovisual</div></div>
                 </div>
+            </div>
+        </div>
+    );
+}
+
+function ActasView({ setView }) {
+    const actas = {
+        '2025': [
+            { nombre: 'Acta comisión mixta paritaria I 29.01.2025', url: '/documentos/actas/ACTAS 2025/Acta comision mixta paritaria I 29.01.2025.pdf' },
+            { nombre: 'Acta comisión mixta paritaria II 29.01.2025', url: '/documentos/actas/ACTAS 2025/Acta comision mixta paritaria II 29.01.2025.pdf' },
+            { nombre: 'Acta reunión comité 19.03.25', url: '/documentos/actas/ACTAS 2025/Acta reunion comité 19.03.25.pdf' },
+            { nombre: 'Acta reunión comité 23.01.25', url: '/documentos/actas/ACTAS 2025/Acta reunion comité 23.01.25.pdf' },
+            { nombre: 'Acta reunión comité 05.05.2025', url: '/documentos/actas/ACTAS 2025/Acta reunion comité 05.05.2025.pdf' },
+            { nombre: 'Acta reunión comité 23.06.2025', url: '/documentos/actas/ACTAS 2025/Acta reunion comité 23.06.2025.pdf' },
+        ],
+        '2024': [
+            { nombre: 'Acta firma convenio 29.11.2024', url: '/documentos/actas/ACTAS 2024/Acta firma convenio 29.11.2024.pdf' },
+            { nombre: 'Acta negociación convenio 27.11.24', url: '/documentos/actas/ACTAS 2024/Acta negociacion convenio 27.11.24.pdf' },
+            { nombre: 'Acta preacuerdo 31.10.2024', url: '/documentos/actas/ACTAS 2024/Acta preacuerdo 31.10.2024.pdf' },
+            { nombre: 'Respuesta a escrito comité 03.10.2024', url: '/documentos/actas/ACTAS 2024/Respuesta a escrito comité 03.10.2024.pdf' },
+            { nombre: 'Ver todas de 2024...', url: '/documentos/actas/ACTAS 2024/' }
+        ],
+        '2023': [
+            { nombre: 'Acta CONVENIO ALCOBENDAS 21.09.2023', url: '/documentos/actas/ACTAS 2023/ACTA CONVENIO ALCOBENDAS 21.09.2023.pdf' },
+            { nombre: 'Acta constitución convenio Alcobendas firmada', url: '/documentos/actas/ACTAS 2023/Acta constitucion convenio Alcobendas firmada 20.06.2023.pdf' },
+            { nombre: 'Acta reunión presentación Comité', url: '/documentos/actas/ACTAS 2023/Acta reunion presentacion Comité 17.04.23.pdf' },
+            { nombre: 'Ver todas de 2023...', url: '/documentos/actas/ACTAS 2023/' }
+        ]
+    };
+
+    const [añoSeleccionado, setAñoSeleccionado] = useState('2025');
+
+    return (
+        <div className="page-wrap">
+            <div className="section-header"><h2 className="section-title">💼 Actas del Comité</h2></div>
+            <div style={{ display: 'flex', gap: '8px', marginBottom: '24px' }}>
+                {Object.keys(actas).sort((a, b) => b.localeCompare(a)).map(año => (
+                    <button key={año} onClick={() => setAñoSeleccionado(año)} className={año === añoSeleccionado ? 'btn-primary' : 'btn-danger'} style={{ flex: 1, padding: '10px' }}>
+                        {año}
+                    </button>
+                ))}
+            </div>
+            <div style={{ display: 'grid', gap: '8px' }}>
+                {actas[añoSeleccionado].map((acta, i) => (
+                    <div key={i} onClick={() => window.open(acta.url, '_blank')} style={{ background: 'var(--white)', padding: '16px 20px', display: 'flex', alignItems: 'center', gap: '12px', cursor: 'pointer', borderRadius: '4px', borderLeft: '4px solid var(--red)' }}>
+                        <span style={{ fontSize: '20px' }}>📄</span>
+                        <div style={{ fontWeight: '600', fontSize: '14px' }}>{acta.nombre}</div>
+                    </div>
+                ))}
             </div>
         </div>
     );
@@ -390,7 +439,7 @@ export default function AppCCOO() {
                 <header className="app-header">
                     {view !== 'home' && <button className="back-btn" onClick={() => setView('home')}>‹</button>}
                     <div className="header-logo"><span className="header-logo-badge">CC</span>OO</div>
-                    <div className="header-subtitle">{view === 'home' ? 'Hábitat · Alcobendas' : view === 'chat' ? 'Asistente Laboral' : view === 'contacto' ? 'Contacto' : 'Calendario de Extras'}</div>
+                    <div className="header-subtitle">{view === 'home' ? 'Hábitat · Alcobendas' : view === 'chat' ? 'Asistente Laboral' : view === 'contacto' ? 'Contacto' : view === 'actas' ? 'Actas' : 'Calendario de Extras'}</div>
                     <nav className="header-nav">
                         <button className={`nav-btn${view === 'home' ? ' active' : ''}`} onClick={() => setView('home')}>Inicio</button>
                         <button className={`nav-btn${view === 'calendario' ? ' active' : ''}`} onClick={() => setView('calendario')}>Extras</button>
@@ -400,6 +449,7 @@ export default function AppCCOO() {
                 {view === 'calendario' && <CalendarioView />}
                 {view === 'chat' && <ChatView />}
                 {view === 'contacto' && <ContactoView />}
+                {view === 'actas' && <ActasView setView={setView} />}
             </div>
         </>
     );
