@@ -183,7 +183,7 @@ function HomeView({ setView }) {
                     <div className="qc-title">Calendario de Extras</div>
                     <div className="qc-desc">Registra y controla tus horas extra</div>
                 </div>
-                <div className="quick-card">
+                <div className="quick-card" onClick={() => setView('contacto')}>
                     <div className="qc-icon">📞</div>
                     <div className="qc-title">Contacto</div>
                     <div className="qc-desc">Habla con el comité de empresa</div>
@@ -204,6 +204,39 @@ function HomeView({ setView }) {
                     <div className="rc-icon blue">📝</div>
                     <div><div className="rc-title">Tablas Salariales</div><div className="rc-desc">Tablas actualizadas 2026</div></div>
                 </div>
+                <div className="resource-card" onClick={() => window.open('/documentos/actas/acta_enero_2026.pdf', '_blank')}>
+                    <div className="rc-icon" style={{ background: '#888', color: 'white' }}>💼</div>
+                    <div><div className="rc-title">Actas del Comité</div><div className="rc-desc">Últimas actas de reuniones</div></div>
+                </div>
+                <div className="resource-card" onClick={() => window.open('#', '_blank')}>
+                    <div className="rc-icon" style={{ background: 'var(--black)', color: 'white' }}>▶️</div>
+                    <div><div className="rc-title">Vídeos y Formación</div><div className="rc-desc">Material audiovisual</div></div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function ContactoView() {
+    return (
+        <div className="page-wrap">
+            <div className="section-header"><h2 className="section-title">📞 Contacto Comité</h2></div>
+            <div style={{ background: 'var(--white)', padding: '32px 24px', borderRadius: '4px', border: '1px solid var(--gray-light)' }}>
+                <p style={{ marginBottom: '24px', fontSize: '16px', lineHeight: '1.5' }}>
+                    <strong>Delegado Sindical CCOO Hábitat Alcobendas</strong><br />
+                    Estamos aquí para ayudarte. Contáctanos por correo o teléfono.
+                </p>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    <a href="mailto:ccoo.habitat.alcobendas@example.com" className="btn-danger" style={{ textAlign: 'center', textDecoration: 'none', display: 'block' }}>
+                        ✉️ ccoo.habitat.alcobendas@example.com
+                    </a>
+                    <a href="tel:+34900000000" className="btn-primary" style={{ textAlign: 'center', textDecoration: 'none', display: 'block' }}>
+                        📱 Llamar por Teléfono
+                    </a>
+                </div>
+                <p style={{ marginTop: '24px', fontSize: '13px', color: 'var(--gray)', textAlign: 'center' }}>
+                    Horario de atención: L-V: 9:00-14:00 y 16:00-18:00
+                </p>
             </div>
         </div>
     );
@@ -353,7 +386,7 @@ export default function AppCCOO() {
                 <header className="app-header">
                     {view !== 'home' && <button className="back-btn" onClick={() => setView('home')}>‹</button>}
                     <div className="header-logo"><span className="header-logo-badge">CC</span>OO</div>
-                    <div className="header-subtitle">{view === 'home' ? 'Hábitat · Alcobendas' : view === 'chat' ? 'Asistente Laboral' : 'Calendario de Extras'}</div>
+                    <div className="header-subtitle">{view === 'home' ? 'Hábitat · Alcobendas' : view === 'chat' ? 'Asistente Laboral' : view === 'contacto' ? 'Contacto' : 'Calendario de Extras'}</div>
                     <nav className="header-nav">
                         <button className={`nav-btn${view === 'home' ? ' active' : ''}`} onClick={() => setView('home')}>Inicio</button>
                         <button className={`nav-btn${view === 'calendario' ? ' active' : ''}`} onClick={() => setView('calendario')}>Extras</button>
@@ -362,6 +395,7 @@ export default function AppCCOO() {
                 {view === 'home' && <HomeView setView={setView} />}
                 {view === 'calendario' && <CalendarioView />}
                 {view === 'chat' && <ChatView />}
+                {view === 'contacto' && <ContactoView />}
             </div>
         </>
     );
