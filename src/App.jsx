@@ -227,11 +227,11 @@ function ContactoView() {
                     Estamos aquí para ayudarte. Contáctanos por correo o teléfono.
                 </p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                    <a href="mailto:ccoo.habitat.alcobendas@example.com" className="btn-danger" style={{ textAlign: 'center', textDecoration: 'none', display: 'block' }}>
-                        ✉️ ccoo.habitat.alcobendas@example.com
+                    <a href="mailto:comiteaccionaalcobendas@gmail.com" className="btn-danger" style={{ textAlign: 'center', textDecoration: 'none', display: 'block', textTransform: 'lowercase' }}>
+                        ✉️ comiteaccionaalcobendas@gmail.com
                     </a>
-                    <a href="tel:+34900000000" className="btn-primary" style={{ textAlign: 'center', textDecoration: 'none', display: 'block' }}>
-                        📱 Llamar por Teléfono
+                    <a href="tel:+34605027203" className="btn-primary" style={{ textAlign: 'center', textDecoration: 'none', display: 'block' }}>
+                        📱 Llamar: 605 02 72 03
                     </a>
                 </div>
                 <p style={{ marginTop: '24px', fontSize: '13px', color: 'var(--gray)', textAlign: 'center' }}>
