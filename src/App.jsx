@@ -198,7 +198,11 @@ function HomeView({ setView }) {
             <div className="resources-grid">
                 <div className="resource-card" onClick={() => window.open('/documentos/convenios/convenio_alcobendas_2024-2027.pdf', '_blank')}>
                     <div className="rc-icon red">📄</div>
-                    <div><div className="rc-title">Convenio Colectivo</div><div className="rc-desc">Consulta los convenios vigentes</div></div>
+                    <div><div className="rc-title">Convenio y +</div><div className="rc-desc">Consulta los convenios vigentes</div></div>
+                </div>
+                <div className="resource-card" onClick={() => window.open('/documentos/convenios/protocolo_ola_calor_2025.pdf', '_blank')}>
+                    <div className="rc-icon" style={{ background: '#EE8000', color: 'white' }}>☀️</div>
+                    <div><div className="rc-title">Protocolo Ola de Calor</div><div className="rc-desc">Normativa y actuación 2025</div></div>
                 </div>
                 <div className="resource-card" onClick={() => window.open('/documentos/convenios/tablas_2026.pdf', '_blank')}>
                     <div className="rc-icon blue">📝</div>
