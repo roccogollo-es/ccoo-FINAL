@@ -193,6 +193,11 @@ function HomeView({ setView }) {
                     <div className="qc-title">Agente IA virtual</div>
                     <div className="qc-desc">Resuelve dudas sobre el convenio</div>
                 </div>
+                <div className="quick-card" onClick={() => setView('nomina')}>
+                    <div className="qc-icon" style={{ background: '#10B981', color: 'white' }}>💶</div>
+                    <div className="qc-title">Revisar Nómina</div>
+                    <div className="qc-desc">Sube tu nómina para revisión</div>
+                </div>
             </div>
             <div className="section-header"><h2 className="section-title">Recursos</h2><a className="section-link" href="/documentos/convenios/convenio_alcobendas_2024-2027.pdf" target="_blank" rel="noreferrer">Ver todo →</a></div>
             <div className="resources-grid">
@@ -216,6 +221,102 @@ function HomeView({ setView }) {
                     <div className="rc-icon" style={{ background: 'var(--black)', color: 'white' }}>▶️</div>
                     <div><div className="rc-title">Vídeos y Formación</div><div className="rc-desc">Material audiovisual</div></div>
                 </div>
+            </div>
+        </div>
+    );
+}
+
+function NominaView() {
+    const [status, setStatus] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [formData, setFormData] = useState({ nombre: '', telefono: '', comentarios: '' });
+    const [file, setFile] = useState(null);
+
+    const handleFileChange = (e) => setFile(e.target.files[0]);
+
+    const getBase64 = (file) => new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!file) return setStatus('Por favor, adjunta un archivo PDF o imagen.');
+
+        // Poner aquí la futura URL del Google Apps Script
+        const SCRIPT_URL = 'AGREGA_AQUI_LA_URL_DE_GOOGLE_SCRIPT';
+
+        if (SCRIPT_URL === 'AGREGA_AQUI_LA_URL_DE_GOOGLE_SCRIPT') {
+            setStatus('Falta configurar el enlace de Google Drive. Avisa al desarrollador.');
+            return;
+        }
+
+        setLoading(true);
+        setStatus('Preparando archivo... esto puede tardar unos segundos.');
+
+        try {
+            const base64Data = await getBase64(file);
+
+            const payload = {
+                nombre: formData.nombre,
+                telefono: formData.telefono,
+                comentarios: formData.comentarios,
+                fileName: file.name,
+                mimeType: file.type,
+                fileBase64: base64Data
+            };
+
+            setStatus('Enviando a revisión...');
+
+            await fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify(payload),
+                mode: 'no-cors', // Evita errores de CORS de Google
+                headers: { 'Content-Type': 'text/plain' }
+            });
+
+            setStatus('¡Nómina enviada con éxito! Te contactaremos pronto.');
+            setFormData({ nombre: '', telefono: '', comentarios: '' });
+            setFile(null);
+            document.getElementById('file-input').value = '';
+        } catch (error) {
+            console.error(error);
+            setStatus('❌ Error al enviar. Inténtalo más tarde.');
+        }
+        setLoading(false);
+    };
+
+    return (
+        <div className="page-wrap">
+            <div className="section-header"><h2 className="section-title">💶 Te revisamos tu Nómina</h2></div>
+            <div style={{ background: 'var(--white)', padding: '32px 24px', borderRadius: '4px', border: '1px solid var(--gray-light)' }}>
+                <p style={{ marginBottom: '24px', fontSize: '15px' }}>
+                    Sube aquí tu nómina si crees que hay algún error o quieres que la revisemos para comprobar que todos los pluses y conceptos están correctos.
+                </p>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label className="form-label">Nombre Completo</label>
+                        <input className="form-input" required value={formData.nombre} onChange={e => setFormData({ ...formData, nombre: e.target.value })} placeholder="Tu nombre..." />
+                    </div>
+                    <div className="form-group">
+                        <label className="form-label">Teléfono de Contacto</label>
+                        <input className="form-input" required type="tel" value={formData.telefono} onChange={e => setFormData({ ...formData, telefono: e.target.value })} placeholder="600 000 000" />
+                    </div>
+                    <div className="form-group">
+                        <label className="form-label">Archivo (PDF o Foto)</label>
+                        <input id="file-input" type="file" required onChange={handleFileChange} className="form-input" accept=".pdf,image/*" style={{ padding: '8px' }} />
+                    </div>
+                    <div className="form-group">
+                        <label className="form-label">Comentarios o Dudas</label>
+                        <textarea className="form-input" value={formData.comentarios} onChange={e => setFormData({ ...formData, comentarios: e.target.value })} placeholder="Escribe aquí si tienes dudas concretas sobre un plus, un día festivo..." rows="3"></textarea>
+                    </div>
+                    <button type="submit" className="btn-primary" disabled={loading} style={{ width: '100%', opacity: loading ? 0.7 : 1 }}>
+                        {loading ? 'Subiendo archivo...' : 'Enviar Nómina'}
+                    </button>
+                    {status && <div style={{ marginTop: '16px', fontSize: '14px', fontWeight: 'bold', color: status.includes('Error') || status.includes('Falta') ? 'var(--red)' : '#10B981', textAlign: 'center' }}>{status}</div>}
+                </form>
             </div>
         </div>
     );
@@ -439,7 +540,7 @@ export default function AppCCOO() {
                 <header className="app-header">
                     {view !== 'home' && <button className="back-btn" onClick={() => setView('home')}>‹</button>}
                     <div className="header-logo"><span className="header-logo-badge">CC</span>OO</div>
-                    <div className="header-subtitle">{view === 'home' ? 'Hábitat · Alcobendas' : view === 'chat' ? 'Asistente Laboral' : view === 'contacto' ? 'Contacto' : view === 'actas' ? 'Actas' : 'Calendario de Extras'}</div>
+                    <div className="header-subtitle">{view === 'home' ? 'Hábitat · Alcobendas' : view === 'chat' ? 'Asistente Laboral' : view === 'contacto' ? 'Contacto' : view === 'actas' ? 'Actas' : view === 'nomina' ? 'Revisión Nóminas' : 'Calendario de Extras'}</div>
                     <nav className="header-nav">
                         <button className={`nav-btn${view === 'home' ? ' active' : ''}`} onClick={() => setView('home')}>Inicio</button>
                         <button className={`nav-btn${view === 'calendario' ? ' active' : ''}`} onClick={() => setView('calendario')}>Extras</button>
@@ -450,6 +551,7 @@ export default function AppCCOO() {
                 {view === 'chat' && <ChatView />}
                 {view === 'contacto' && <ContactoView />}
                 {view === 'actas' && <ActasView setView={setView} />}
+                {view === 'nomina' && <NominaView />}
             </div>
         </>
     );
