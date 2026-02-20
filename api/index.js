@@ -27,10 +27,8 @@ const openai = new OpenAI({
 // Cargar configuración del vector store (si existe)
 let vectorStoreConfig = null;
 try {
-    if (fs.existsSync('./vector-store-config.json')) {
-        vectorStoreConfig = JSON.parse(fs.readFileSync('./vector-store-config.json', 'utf8'));
-        console.log('✅ Vector Store configurado:', vectorStoreConfig.vectorStoreId);
-    }
+    vectorStoreConfig = require('../vector-store-config.json');
+    console.log('✅ Vector Store configurado:', vectorStoreConfig.vectorStoreId);
 } catch (error) {
     console.log('ℹ️  No hay vector store configurado (opcional)');
 }
@@ -416,7 +414,7 @@ ${vectorStoreConfig ? `
 // ============================================
 
 // Endpoint principal de chat
-app.post('/agent/chat', async (req, res) => {
+app.post(['/agent/chat', '/api/index', '/api/index.js', '/api/agent/chat', '*/chat'], async (req, res) => {
     try {
         const { message, userId = 'default' } = req.body;
 
@@ -519,7 +517,7 @@ app.post('/agent/chat', async (req, res) => {
 });
 
 // Endpoint para reiniciar conversación
-app.post('/agent/reset', async (req, res) => {
+app.post(['/agent/reset', '/api/reset', '*/reset'], async (req, res) => {
     const { userId = 'default' } = req.body;
     userThreads.delete(userId);
     res.json({ message: 'Conversación reiniciada', userId });
