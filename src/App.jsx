@@ -18,7 +18,20 @@ const fontStyle = `
     --blue: #1A4DD9;
   }
 
-  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--black); }
+  body { 
+    font-family: 'DM Sans', sans-serif; 
+    background: var(--cream); 
+    color: var(--black); 
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    user-select: none;
+    overscroll-behavior-y: none;
+  }
+  input, textarea, select {
+    -webkit-user-select: auto;
+    user-select: auto;
+  }
   .app-root { min-height: 100vh; display: flex; flex-direction: column; }
 
   .app-header {
